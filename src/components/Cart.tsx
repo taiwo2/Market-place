@@ -9,8 +9,8 @@ import {
   SheetTitle,
   SheetTrigger,
 } from './ui/sheet'
-// import { Separator } from './ui/separator'
-// import { formatPrice } from '@/lib/utils'
+import { Separator } from './ui/separator'
+import { formatPrice } from '@/lib/utils'
 import Link from 'next/link'
 import { buttonVariants } from './ui/button'
 import Image from 'next/image'
@@ -66,7 +66,7 @@ const Cart = () => {
               {/* </ScrollArea> */}
             </div>
             <div className='space-y-4 pr-6'>
-              {/* <Separator /> */}
+              <Separator />
               <div className='space-y-1.5 text-sm'>
                 <div className='flex'>
                   <span className='flex-1'>Shipping</span>
@@ -76,7 +76,7 @@ const Cart = () => {
                   <span className='flex-1'>
                     Transaction Fee
                   </span>
-                  {/* <span>{formatPrice(fee)}</span> */}
+                  <span>{formatPrice(fee)}</span>
                 </div>
                 <div className='flex'>
                   <span className='flex-1'>Total</span>
