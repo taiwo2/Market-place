@@ -11,17 +11,18 @@ import nextBuild from 'next/dist/build'
 import path from 'path'
 import { PayloadRequest } from 'payload/types'
 import { parse } from 'url'
-
+import * as trpcExpress from '@trpc/server/adapters/express'
+import { appRouter } from './trpc'
 const app = express()
 const PORT = Number(process.env.PORT) || 3000
 
-// const createContext = ({
-//   req,
-//   res,
-// }: trpcExpress.CreateExpressContextOptions) => ({
-//   req,
-//   res,
-// })
+const createContext = ({
+  req,
+  res,
+}: trpcExpress.CreateExpressContextOptions) => ({
+  req,
+  res,
+})
 
 // export type ExpressContext = inferAsyncReturnType<
 //   typeof createContext
@@ -85,13 +86,13 @@ const start = async () => {
   // })
 
   // app.use('/cart', cartRouter)
-  // app.use(
-  //   '/api/trpc',
-  //   trpcExpress.createExpressMiddleware({
-  //     router: appRouter,
-  //     createContext,
-  //   })
-  // )
+  app.use(
+    '/api/trpc',
+    trpcExpress.createExpressMiddleware({
+      router: appRouter,
+      createContext,
+    })
+  )
 
   app.use((req, res) => nextHandler(req, res))
 
